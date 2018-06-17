@@ -23,6 +23,10 @@ var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
+// Require scraping tools
+var request = require("request");
+var cheerio = require("cheerio");
+
 // Require all models
 var db = require("./models");
 
@@ -37,10 +41,11 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI);
 
-// Require routes for API endpoints
-var routes = require("./controllers/articles_controller.js");
-
-app.use(routes);
+// Routes
+app.get("/", function(req, res) {
+    // Home page
+    res.send("Hello world");
+});
 
 // Start the server to begin listening
 app.listen(PORT, function() {
