@@ -44,7 +44,7 @@ mongoose.connect(MONGODB_URI);
 // Routes
 app.get("/", function(req, res) {
     // Home page
-    res.send("Hello world");
+    res.render("index");
 });
 
 // Start the server to begin listening
