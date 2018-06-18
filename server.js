@@ -47,6 +47,23 @@ app.get("/", function(req, res) {
     res.render("index");
 });
 
+// GET route for scraping a site
+app.get("/scrape", function(req, res) {
+    request("https://www.androidpolice.com", function(error, response, html) {
+        if (error) {
+            console.log(error);
+        }
+        else {
+            var $ = cheerio.load(html);
+            $("div.post").each(function(i, element) {
+                var result = {};
+                result.headline = $(this).children("header").children("h2").children("a").text();
+                console.log(result);
+            });
+        }
+    });
+});
+
 // Start the server to begin listening
 app.listen(PORT, function() {
     console.log("App listening on PORT: " + PORT);
