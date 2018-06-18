@@ -57,11 +57,14 @@ app.get("/scrape", function(req, res) {
             var $ = cheerio.load(html);
             $("div.post").each(function(i, element) {
                 var result = {};
-                result.headline = $(this).children("header").children("h2").children("a").text();
+                result.headline = $(this).find("header").find("h2").children("a").text();
+                result.summary = $(this).find("div.post-content").children("p").text();
+                result.url = $(this).find("header").find("h2").children("a").attr("href");
                 console.log(result);
             });
         }
     });
+    res.send("Scrape complete");
 });
 
 // Start the server to begin listening
