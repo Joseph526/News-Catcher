@@ -76,6 +76,29 @@ app.get("/scrape", function(req, res) {
     res.send("Scrape complete");
 });
 
+// GET route for retrieving all articles
+app.get("/articles", function(req, res) {
+    db.Article.find({})
+        .then(function(dbArticle) {
+            res.json(dbArticle);
+        })
+        .catch(function(err) {
+            res.json(err);
+        });
+});
+
+// GET route for retrieving one article
+app.get("/articles/:id", function(req, res) {
+    db.Article.findOne({ _id: req.params.id })
+        .populate("note")
+        .then(function(dbArticle) {
+            res.json(dbArticle);
+        })
+        .catch(function(err) {
+            res.json(err);
+        });
+});
+
 // Start the server to begin listening
 app.listen(PORT, function() {
     console.log("App listening on PORT: " + PORT);
