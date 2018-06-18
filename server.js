@@ -56,11 +56,20 @@ app.get("/scrape", function(req, res) {
         else {
             var $ = cheerio.load(html);
             $("div.post").each(function(i, element) {
+                // Traverse the DOM and save the desired elements
                 var result = {};
                 result.headline = $(this).find("header").find("h2").children("a").text();
                 result.summary = $(this).find("div.post-content").children("p").text();
                 result.url = $(this).find("header").find("h2").children("a").attr("href");
-                console.log(result);
+
+                // Push to DB
+                db.Article.create(result)
+                    .then(function(dbArticle) {
+                        console.log(dbArticle);
+                    })
+                    .catch(function(err) {
+                        return res.json(err);
+                    });
             });
         }
     });
