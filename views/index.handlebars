@@ -30,6 +30,15 @@
                             </div>
                             <div class="notes" id={{_id}} style="display:none;">
                                 Notes placeholder {{_id}}
+                                <form role="form" class="form">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="noteTitle" placeholder="Title">
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea class="form-control" id="noteBody" placeholder="Notes"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-sm btn-secondary noteSubmit" id={{_id}}>Submit</button>
+                                </form>
                             </div>
                         </div>
                     </div>
