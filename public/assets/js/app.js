@@ -8,4 +8,9 @@ $(document).ready(function() {
                 console.log(data);
             });
     });
+
+    $("button.notes").on("click", function(event) {
+        var id = $(this).data("btn-id");
+        $("div.notes#" + id).slideToggle("slow");
+    });
 });
