@@ -3,9 +3,9 @@ $(document).ready(function() {
         event.preventDefault();
 
         // Send the GET request
-        $.get("/articles")
-            .then(function() {
-                location.reload();
+        $.get("/scrape")
+            .done(function(data) {
+                console.log(data);
             });
     });
 });

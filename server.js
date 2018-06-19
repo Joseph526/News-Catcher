@@ -44,7 +44,16 @@ mongoose.connect(MONGODB_URI);
 // Routes
 app.get("/", function(req, res) {
     // Home page
-    res.render("index");
+    db.Article.find({})
+        .then(function(dbArticle) {
+            var hbsObject = {
+                articles: dbArticle
+            };
+            res.render("index", hbsObject);
+        })
+        .catch(function(err) {
+            res.json(err);
+        });
 });
 
 // GET route for scraping a site
