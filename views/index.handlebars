@@ -10,6 +10,23 @@
     </div>
     <p>This is the Handlebars home page.</p>
     <div class="container" id="resultsArea">
-        
+        {{#each articles}}
+            <div class="row">
+                <div class="col-md">
+                    <div class="card mb-4 box-shadow">
+                        <div class="card-body">
+                            <h5 class="card-title">{{headline}}</h5>
+                            <p class="card-text">
+                                <div>{{summary}}</div>
+                                <br>
+                                <div>
+                                    <a href={{url}} target="_blank">{{url}}</a>
+                                </div>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
     </div>
 </div>
