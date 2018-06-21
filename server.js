@@ -45,6 +45,7 @@ mongoose.connect(MONGODB_URI);
 app.get("/", function(req, res) {
     // Home page
     db.Article.find({})
+        .populate("note")
         .then(function(dbArticle) {
             var hbsObject = {
                 articles: dbArticle
@@ -105,7 +106,7 @@ app.get("/articles/:id", function(req, res) {
         .populate("note")
         .then(function(dbArticle) {
             var hbsObject = {
-                article: dbArticle
+                articles: dbArticle
             };
             res.render("index", hbsObject);
         })
