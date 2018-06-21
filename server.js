@@ -114,6 +114,23 @@ app.get("/articles/:id", function(req, res) {
         });
 });
 
+// POST route for saving a note
+app.post("/articles/:id", function(req, res) {
+    db.Note.create(req.body)
+        .then(function(dbNote) {
+            return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true });
+        })
+        .then(function(dbArticle) {
+            var hbsObject = {
+                article: dbArticle
+            };
+            res.render("index", hbsObject);
+        })
+        .catch(function(err) {
+            res.json(err);
+        });
+});
+
 // Start the server to begin listening
 app.listen(PORT, function() {
     console.log("App listening on PORT: " + PORT);
