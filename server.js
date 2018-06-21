@@ -123,7 +123,7 @@ app.post("/articles/:id", function(req, res) {
         })
         .then(function(dbArticle) {
             var hbsObject = {
-                article: dbArticle
+                articles: dbArticle
             };
             res.render("index", hbsObject);
         })

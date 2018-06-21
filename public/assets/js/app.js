@@ -31,7 +31,7 @@ $(document).ready(function() {
         // Send the POST request
         $.post("/articles/" + id, noteData)
             .then(function(data) {
-                console.log(data);
+                console.log("Note submitted");
             });
     });
 });
