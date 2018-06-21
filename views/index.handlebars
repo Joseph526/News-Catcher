@@ -8,7 +8,6 @@
         </h1>
         <button type="button" class="btn btn-secondary" id="btnGetArticles">Get Articles</button>
     </div>
-    <p>This is the Handlebars home page.</p>
     <div class="container" id="resultsArea">
         {{#each articles}}
             <div class="row">
@@ -32,10 +31,10 @@
                                 Notes placeholder {{_id}}
                                 <form role="form" class="form">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="noteTitle" placeholder="Title">
+                                        <input type="text" class="form-control" id="noteTitle{{_id}}" placeholder="Title">
                                     </div>
                                     <div class="form-group">
-                                        <textarea class="form-control" id="noteBody" placeholder="Notes"></textarea>
+                                        <textarea class="form-control" id="noteBody{{_id}}" placeholder="Notes"></textarea>
                                     </div>
                                     <button type="submit" class="btn btn-sm btn-secondary noteSubmit" id={{_id}}>Submit</button>
                                 </form>
